@@ -5,7 +5,6 @@ body {
   border: 1px solid #888844;
 }
 
-
 h1, h2, h3 {
   border-bottom: 1px solid #888844;
 }
@@ -22,6 +21,9 @@ h2, h3 {
   margin: 5px;
 }
 
+[ui-view] {
+  vertical-align: top;
+}
 
 [ui-view=clientInfo] {
   display: inline-block;

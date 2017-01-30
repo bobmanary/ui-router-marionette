@@ -1,6 +1,6 @@
 <h3>Clients</h3>
 <ul>
   <% for client in @items: %>
-  <li><a href="#/client/<%= client.id %>"><%= "#{client.first_name} #{client.last_name}" %></a></li>
+  <li><a href="#client/<%= client.id %>"><%= "#{client.first_name} #{client.last_name}" %></a></li>
   <% end %>
 </ul>

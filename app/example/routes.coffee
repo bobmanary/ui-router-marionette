@@ -38,9 +38,9 @@
 
 
   .state "app.client.contact",
-    url: "/details"
+    url: "/contact"
     resolve:
       clientPhoneNumbers: ['client', (client) -> client.getPhoneNumbers()]
     views:
-      "clientInfo@app": component: ClientComponent
+      "clientInfo@app": component: ClientContactComponent
     onEnter: -> console.log 'onEnter: app.client.contact'

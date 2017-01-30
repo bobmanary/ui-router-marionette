@@ -1,4 +1,6 @@
 <h3>Client: <%= "#{@first_name} #{@last_name}" %> - Contact Info</h3>
+<a href="#client/<%= @id %>">Details</a> | Contact Info
+<hr>
 <% for phone in @items: %>
   Phone: <%= phone.number %><br>
   Extension: <%= phone.ext || '-' %><br>

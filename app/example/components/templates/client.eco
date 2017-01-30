@@ -1,2 +1,4 @@
 <h3>Client: <%= "#{@first_name} #{@last_name}" %></h3>
+Details | <a href="#client/<%= @id %>/contact">Contact Info</a>
+<hr>
 <p>Location: <%= @location %></p>
