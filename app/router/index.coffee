@@ -25,7 +25,7 @@ class UIRouterMarionette extends UIRouter
     @urlRouter.listen()
     @urlRouter.sync()
 
-    @rootUIView = new UIViewMarionette(@, null, @rootRegion, "")
+    @rootRegion.uiView = @rootUIView = new UIViewMarionette(@, null, @rootRegion, "")
     @rootUIView.register()
 
 
