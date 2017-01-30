@@ -21,12 +21,14 @@ class UIRouterMarionette extends UIRouter
 
     @stateRegistry.decorator("views", mnViewsBuilder)
 
-    @urlMatcherFactory.$get()
-    @urlRouter.listen()
-    @urlRouter.sync()
 
     @rootRegion.uiView = @rootUIView = new UIViewMarionette(@, null, @rootRegion, "")
     @rootUIView.register()
+
+  start: ->
+    @urlMatcherFactory.$get()
+    @urlRouter.listen()
+    @urlRouter.sync()
 
 
 

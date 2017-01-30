@@ -7,8 +7,9 @@ module.exports = do (Marionette, $) ->
 
   App.on "before:start", ->
     @router = new UIRouterMarionette(App.rootRegion)
+    require('./routes')
 
   App.on "start", ->
-    require('./routes')
+    @router.start()
 
   return App
