@@ -1,6 +1,3 @@
-console.log 'wtf'
-
-
 testData = [
   {id: 1, first_name: "Theodore", last_name: "Logan"}
   {id: 2, first_name: "William", last_name: "Preston"}
@@ -17,7 +14,6 @@ exports.ClientModel = class ClientModel extends Backbone.Model
   fetch: ->
     # fake a server model request
     deferred = $.Deferred()
-    debugger
     if not (clientData = _.findWhere testData, id: parseInt(@id, 10))?
       deferred.reject()
 
@@ -49,7 +45,6 @@ exports.PhoneNumberCollection = class PhoneNumberCollection extends Backbone.Col
   sync: (method, model, options) ->
     deferred = $.Deferred()
 
-    debugger
     deferred.resolve [
       {id: 1, first_name: "Theodore", last_name: "Logan"}
       {id: 2, first_name: "William", last_name: "Preston"}

@@ -1,7 +1,10 @@
 id = 0
 Marionette = require('backbone.marionette/lib/backbone.marionette')
-Marionette.Region::initialize = (options) ->
-  #debugger
+
+# Marionette.Region::initialize = (options) ->
+  # If Marionette provided a way to use custom region classes on a per-layout
+  # basis I could register UIViews here but I don't want to do it globally
+  # and attempt to register regions that aren't being managed by ui-router.
 
 
 exports.UIViewMarionette = class UIViewMarionette extends Marionette.Object
