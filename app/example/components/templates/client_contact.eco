@@ -1,0 +1,7 @@
+<h3>Client: <%= "#{@first_name} #{@last_name}" %> - Contact Info</h3>
+<% for phone in @items: %>
+  Phone: <%= phone.number %><br>
+  Extension: <%= phone.ext || '-' %><br>
+  Type: <%= phone.type || '-' %>
+  <hr>
+<% end %>

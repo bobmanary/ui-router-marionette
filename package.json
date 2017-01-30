@@ -1,0 +1,25 @@
+{
+  "author": "Bob Manary",
+  "name": "ui-router-marionette",
+  "description": "Front End Web Application for Ample Organics",
+  "version": "0.0.1",
+  "homepage": "https://github.com/bobmanary/ui-router-marionette",
+  "engines": {
+    "node": "4.2.x",
+    "npm": "2.14.x"
+  },
+  "scripts": {
+    "start": "brunch watch --server -j 2 --port 3332"
+  },
+  "dependencies": {
+    "backbone.marionette": "^2.4.7",
+    "jquery": "^3.1.1",
+    "ui-router-core": "^3.1.1"
+  },
+  "devDependencies": {
+    "coffee-script-brunch": "1.8.x",
+    "css-brunch": "1.7.x",
+    "eco-brunch": "1.7.x",
+    "javascript-brunch": "1.8.x"
+  }
+}

@@ -1,0 +1,2 @@
+<h3>Client: <%= "#{@first_name} #{@last_name}" %></h3>
+<p>Location: <%= @country %></p>
