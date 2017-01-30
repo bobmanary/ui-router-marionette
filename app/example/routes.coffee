@@ -5,7 +5,7 @@
   ClientContactComponent = require('./components/client_contact')
   RootComponent = require('./components/root')
 
-  { ClientModel } = require('./models')
+  { ClientModel, ClientCollection } = require('./models')
 
   App.router.stateProvider
   .state "app",
@@ -13,6 +13,8 @@
     views:
       '':
         component: RootComponent
+    resolve:
+      clients: -> new ClientCollection().fetch()
     onEnter: -> console.log 'onEnter: app'
 
 

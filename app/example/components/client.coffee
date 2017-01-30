@@ -4,6 +4,8 @@
 
   class ClientView extends Marionette.ItemView
     template: require('./templates/client')
+    serializeData: ->
+      @options.resolves.client.toJSON()
 
 
 
@@ -13,4 +15,4 @@
       console.log('client contact component', arguments)
 
     getView: ->
-      @_view or= new @view controller: @
+      @_view or= new @view _.extend {}, @options, controller: @

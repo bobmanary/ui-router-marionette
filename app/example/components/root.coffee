@@ -16,4 +16,4 @@
       console.log('root component', arguments)
 
     getView: ->
-      @_view or= new @view controller: @
+      @_view or= new @view _.extend {}, @options, controller: @

@@ -1,4 +1,6 @@
 <h3>Clients</h3>
 <ul>
-  <li>client list would go here if eco was cooperating</li>
+  <% for client in @items: %>
+  <li><a href="#/client/<%= client.id %>"><%= "#{client.first_name} #{client.last_name}" %></a></li>
+  <% end %>
 </ul>
