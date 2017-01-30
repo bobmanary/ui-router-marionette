@@ -1,5 +1,6 @@
 @App.module "Example", (Example, App, Backbone, Marionette, $, _) ->
 
+  ClientListComponent = require('./components/client_list')
   ClientComponent = require('./components/client')
   ClientContactComponent = require('./components/client_contact')
   RootComponent = require('./components/root')
@@ -8,9 +9,10 @@
 
   App.router.stateProvider
   .state "app",
-    url: ""
     abstract: true
-    component: RootComponent
+    views:
+      '':
+        component: RootComponent
     onEnter: -> console.log 'onEnter: app'
 
 
@@ -22,12 +24,14 @@
         model.fetch().then -> model
       ]
     url: "client/:id"
+    views:
+      "clientList@app": component: ClientListComponent
 
 
   .state "app.client.overview",
     url: ""
     views:
-      "@app.client": component: ClientComponent
+      "clientInfo@app": component: ClientComponent
     onEnter: -> console.log 'onEnter: app.client.overview'
 
 
@@ -36,5 +40,5 @@
     resolve:
       clientPhoneNumbers: ['client', (client) -> client.getPhoneNumbers()]
     views:
-      "@app.client": component: ClientComponent
+      "clientInfo@app": component: ClientComponent
     onEnter: -> console.log 'onEnter: app.client.contact'

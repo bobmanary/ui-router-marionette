@@ -4,6 +4,9 @@
 
   class Layout extends UILayoutMn2
     template: require('./templates/root')
+    regions:
+      'clientInfo': '[ui-view=clientInfo]'
+      'clientList': '[ui-view=clientList]'
 
 
 
