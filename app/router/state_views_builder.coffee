@@ -15,7 +15,6 @@ hasAnyKey = (keys, obj) ->
 
 exports.mnViewsBuilder = (state) ->
   return if not state.parent
-  console.log 'stateBuilder', state
 
   # allowable keys are basically "component" and maybe "bindings" for my plans here
   keys = ['component', 'bindings']
@@ -44,11 +43,6 @@ exports.MnViewConfig = class MnViewConfig
   constructor: (@path, @viewDecl) ->
     @loaded = true
     @id = viewConfigId++
-    #console.log("mnviewconfig ctor #{@id}", arguments)
 
   load: ->
-    #console.log "mnviewconfig load #{@id}", arguments
-    $q = services.$q
-    # context = new ResolveContext(@path)
-
-    return $q.when(@)
+    services.$q.when(@)

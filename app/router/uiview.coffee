@@ -1,5 +1,6 @@
 id = 0
 Marionette = require('backbone.marionette/lib/backbone.marionette')
+{ ResolveContext } = require('ui-router-core')
 
 # Marionette.Region::initialize = (options) ->
   # If Marionette provided a way to use custom region classes on a per-layout
@@ -25,15 +26,10 @@ exports.UIViewMarionette = class UIViewMarionette extends Marionette.Object
       fqn: if parentFqn then "#{parentFqn}.#{name}" else name
       creationContext: parentContext || rootContext
       configUpdated: (config) =>
-        console.warn('configUpdated', this, arguments)
-        return console.warn('no config') if not config?
-        return console.warn("bad config type '#{config.viewDecl.$type}'") if config.viewDecl.$type isnt 'backbone'
-        console.warn('good config type?')
+        return if not config?
+        return console.error("bad config type '#{config.viewDecl.$type}'") if config.viewDecl.$type isnt 'backbone'
         @updateView(config)
       config: undefined
-
-    console.log "added fqn #{@activeUIView.fqn}"
-
 
   register: ->
     @deregister = @router.viewService.registerUIView(@activeUIView)
@@ -43,7 +39,19 @@ exports.UIViewMarionette = class UIViewMarionette extends Marionette.Object
     return if @viewConfig == newConfig
     @viewConfig = newConfig
     if newConfig?.viewDecl?.component?
-      @mnRegion.show new newConfig.viewDecl.component().getView()
+      @mnRegion.show (new newConfig.viewDecl.component(resolves: @getResolves newConfig)).getView()
+
+  getResolves: (config) ->
+    # map all resolved objects (plus stateparams and $transition$)
+    # to a plain object to pass to the component controller
+    context = new ResolveContext(config.path)
+    resolves = {}
+    keys = _.filter context.getTokens(), (token) -> typeof token is 'string'
+    resolves[key] = context.getResolvable(key).data for key in keys
+
+    return resolves
+
+
 
   onBeforeDestroy: ->
     @deregister?()
