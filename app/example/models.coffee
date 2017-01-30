@@ -5,7 +5,7 @@ testData = [
   {id: 4, first_name: "Thelma", last_name: "Dickinson", location: "AZ"}
 ]
 
-resolveDelay = 333
+resolveDelay = 100
 
 
 exports.ClientModel = class ClientModel extends Backbone.Model
@@ -18,10 +18,7 @@ exports.ClientModel = class ClientModel extends Backbone.Model
       deferred.reject()
 
     @set clientData
-    setTimeout (=>
-      console.log "Fetched a client model", @
-      deferred.resolve clientData, {}
-    ), resolveDelay
+    deferred.resolve clientData, {}
 
     return deferred.promise()
 
