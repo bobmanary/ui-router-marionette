@@ -1,3 +1,0 @@
-<h1>test layout</h1>
-<div ui-view="test1"></div>
-<div ui-view="test2"></div>

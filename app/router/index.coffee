@@ -1,6 +1,6 @@
 { UIRouter, $q } = require('ui-router-core')
 StateProvider = require('./state_provider')
-{ mnViewsBuilder, MnViewConfig } = require('./state_view_builder')
+{ mnViewsBuilder, MnViewConfig } = require('./state_views_builder')
 { hashLocationPlugin, servicesPlugin } = require('ui-router-core/lib/vanilla')
 { UIViewMarionette } = require('./uiview')
 

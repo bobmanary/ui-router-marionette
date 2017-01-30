@@ -23,16 +23,18 @@
       ]
     url: "client/:id"
 
+
   .state "app.client.overview",
     url: ""
     views:
       "@app.client": component: ClientComponent
-    onEnter: -> console.log 'onEnter: app.client'
+    onEnter: -> console.log 'onEnter: app.client.overview'
 
 
   .state "app.client.contact",
     url: "/details"
     resolve:
       clientPhoneNumbers: ['client', (client) -> client.getPhoneNumbers()]
-    component: ClientContactComponent,
+    views:
+      "@app.client": component: ClientComponent
     onEnter: -> console.log 'onEnter: app.client.contact'
