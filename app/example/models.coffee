@@ -24,8 +24,8 @@ exports.ClientModel = class ClientModel extends Backbone.Model
 
   getPhoneNumbers: ->
     collection = new PhoneNumberCollection [
-      { phone: '555 555 5555', ext: null, type: 'home' }
-      { phone: '555 555 5555', ext: '1234', type: 'work' }
+      { number: '555 555 5555', ext: null, type: 'home' }
+      { number: '555 555 5555', ext: '1234', type: 'work' }
     ]
     deferred = $.Deferred()
     deferred.resolve(collection)
