@@ -6,7 +6,7 @@
   "homepage": "https://github.com/bobmanary/ui-router-marionette",
   "engines": {
     "node": "4.2.x",
-    "npm": "2.14.x"
+    "npm": ">=3.0"
   },
   "scripts": {
     "start": "brunch watch --server -j 2 --port 3332"
