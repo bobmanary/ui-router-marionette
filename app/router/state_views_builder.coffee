@@ -16,8 +16,7 @@ hasAnyKey = (keys, obj) ->
 exports.mnViewsBuilder = (state) ->
   return if not state.parent
 
-  # allowable keys are basically "component" and maybe "bindings" for my plans here
-  keys = ['component', 'bindings']
+  keys = ['component', 'view', 'controller']
 
   views = {}
   viewsObject = state.views or {$default: _.pick(state, keys)}

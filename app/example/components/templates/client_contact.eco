@@ -7,3 +7,5 @@
   Type: <%= phone.type || '-' %>
   <hr>
 <% end %>
+<a ui-sref="app.client.overview">test ui-sref 1</a> |
+<a ui-sref="app.client.overview({id: 2})">test ui-sref 2</a>
