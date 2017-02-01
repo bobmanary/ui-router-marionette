@@ -11,8 +11,6 @@
 
   module.exports = class ClientComponent extends Marionette.Object
     view: ClientView
-    initialize: (options) ->
-      console.log('client contact component', arguments)
 
     getView: ->
       @_view or= new @view _.extend {}, @options, controller: @

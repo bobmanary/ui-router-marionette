@@ -12,8 +12,6 @@
 
   module.exports = class RootComponent extends Marionette.Object
     view: Layout
-    initialize: (options) ->
-      console.log('root component', arguments)
 
     getView: ->
       @_view or= new @view _.extend {}, @options, controller: @

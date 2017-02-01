@@ -1,5 +1,6 @@
 <h3>Client: <%= "#{@first_name} #{@last_name}" %> - Contact Info</h3>
-<a href="#client/<%= @id %>">Details</a> | Contact Info
+<a ui-sref="app.client.overview" ui-sparams="<%= @params(id: @id) %>">Details</a> |
+<a ui-sref="app.client.contact"  ui-sparams="<%= @params(id: @id) %>">Contact Info</a>
 <hr>
 <% for phone in @items: %>
   Phone: <%= phone.number %><br>
@@ -7,5 +8,3 @@
   Type: <%= phone.type || '-' %>
   <hr>
 <% end %>
-<a ui-sref="app.client.overview">test ui-sref 1</a> |
-<a ui-sref="app.client.overview({id: 2})">test ui-sref 2</a>

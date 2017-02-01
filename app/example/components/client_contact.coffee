@@ -11,13 +11,15 @@
     serializeData: ->
       _.extend @options.resolves.client.toJSON(),
         items: @options.resolves.clientPhoneNumbers.toJSON()
+        params: (p) ->
+          try
+            return JSON.stringify(p)
+          return '{}'
 
 
 
   module.exports = class ClientContactComponent extends Marionette.Object
     view: Layout
-    initialize: (options) ->
-      console.log('client contact component', arguments)
 
     getView: ->
       @_view or= new @view _.extend {}, @options, controller: @
