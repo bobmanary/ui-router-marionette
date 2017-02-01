@@ -15,8 +15,13 @@ exports.UISref = class UISref extends Mn.Behavior
     # original attachment (through data binding or whatever)
 
   onAttach: ->
+    # Go through all the ui-sref links and turn their ui-sref and HTML-escaped
+    # ui-sparams attributes into a functioning app state link
     @ui.sref.each (i, e) ->
-      state = $(e).attr('ui-sref')
-      # TODO: figure out how to get/parse url params
-      url = UIRouterMarionette.getInstance().stateService.href(state, {id: 1})
-      e.href = url
+      e = $(e)
+      state = e.attr('ui-sref')
+      try
+        params = JSON.parse(e.attr 'ui-sparams')
+      url = UIRouterMarionette.getInstance().stateService.href(state, params)
+
+      e.attr('href', url)
