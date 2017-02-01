@@ -1,8 +1,9 @@
 # UI-Router Marionette
 
-An attempt at writing a UI-Router integration for Backbone Marionette apps. Not yet functional.
+A UI-Router integration for Backbone Marionette (2.x) apps. Minimally usable at the moment.
 
 ## Running the example:
+Currently requires npm v3+ or yarn for the flat node_modules structure.
 ```
 # npm install -g brunch
 $ npm install
@@ -10,20 +11,24 @@ $ npm start
 ```
 Accessible at `http://localhost:3332`.
 
-Doesn't set up default routes or anything yet so currently you need to open the javascript console and run `App.router.stateService.go('app.client.contact', {id: 4})`
 
-## Current issues:
-- Everything!
-- Duplicates the "Root component" view.
+## To do:
 
-
+- Better documentation
+- Missing state options
+- Behavior for active state class toggling
+- Better separation of core code and example app
+- Improve example app
+- Investigate Marionette 3 support
+- ...everything.
 
 ## Usage:
-todo: write docs
 
 ### Adding states
+todo
 
 ### Registering Marionette.Regions as ui-views
+todo
 
 ### Linking to states
 A Marionette Behavior class is provided for <a> building links to other states.
