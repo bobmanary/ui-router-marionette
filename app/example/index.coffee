@@ -13,11 +13,10 @@ module.exports = do (Marionette, $) ->
     require('./routes')
     Visualizer = require('ui-router-visualizer').Visualizer
     @router.plugin(Visualizer)
+    @router.trace.enable()
+    @router.trace.enable("TRANSITION", "UIVIEW", "VIEWCONFIG")
 
   App.on "start", ->
     @router.start(App.rootRegion)
-
-    @router.trace.enable()
-    @router.trace.enable("TRANSITION", "UIVIEW", "VIEWCONFIG")
 
   return App
