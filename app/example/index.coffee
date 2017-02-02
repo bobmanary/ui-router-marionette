@@ -11,6 +11,8 @@ module.exports = do (Marionette, $) ->
   App.on "before:start", ->
     @router = UIRouterMarionette.getInstance()
     require('./routes')
+    Visualizer = require('ui-router-visualizer').Visualizer
+    @router.plugin(Visualizer)
 
   App.on "start", ->
     @router.start(App.rootRegion)
