@@ -6,9 +6,10 @@
   RootComponent = require('./components/root')
 
   { ClientModel, ClientCollection } = require('./models')
+  registry = App.router.stateRegistry
 
-  App.router.stateProvider
-  .state "app",
+  registry.register
+    name: "app"
     abstract: true
     views:
       '':
@@ -18,7 +19,8 @@
     onEnter: -> console.log 'onEnter: app'
 
 
-  .state "app.client",
+  registry.register
+    name: "app.client"
     abstract: true
     resolve:
       client: ['$stateParams', ($stateParams) ->
@@ -30,14 +32,16 @@
       "clientList@app": component: ClientListComponent
 
 
-  .state "app.client.overview",
+  registry.register
+    name: "app.client.overview",
     url: ""
     views:
       "clientInfo@app": component: ClientComponent
     onEnter: -> console.log 'onEnter: app.client.overview'
 
 
-  .state "app.client.contact",
+  registry.register
+    name: "app.client.contact",
     url: "/contact"
     resolve:
       clientPhoneNumbers: ['client', (client) -> client.getPhoneNumbers()]

@@ -1,5 +1,4 @@
 { UIRouter, $q } = require('ui-router-core')
-StateProvider = require('./state_provider')
 { mnViewsBuilder, MnViewConfig } = require('./state_views_builder')
 { hashLocationPlugin, servicesPlugin } = require('ui-router-core/lib/vanilla')
 { UIViewMarionette } = require('./uiview')
@@ -18,7 +17,6 @@ class UIRouterMarionette extends UIRouter
     super
     @_started = false
     @viewService._pluginapi._viewConfigFactory('backbone', viewConfigFactory)
-    @stateProvider = new StateProvider(@stateRegistry, @stateService)
     @plugin(servicesPlugin)
     @plugin(hashLocationPlugin)
 
@@ -32,8 +30,8 @@ class UIRouterMarionette extends UIRouter
     @rootRegion.uiView.register()
 
     @urlMatcherFactory.$get()
-    @urlRouter.listen()
-    @urlRouter.sync()
+    @urlService.listen()
+    @urlService.sync()
     @_started = true
     return @
 
