@@ -15,4 +15,7 @@ module.exports = do (Marionette, $) ->
   App.on "start", ->
     @router.start(App.rootRegion)
 
+    @router.trace.enable()
+    @router.trace.enable("TRANSITION", "UIVIEW", "VIEWCONFIG")
+
   return App
