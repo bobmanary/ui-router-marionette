@@ -51,7 +51,5 @@ exports.UIViewMarionette = class UIViewMarionette extends Marionette.Object
 
     return resolves
 
-
-
   onBeforeDestroy: ->
     @deregister?()
