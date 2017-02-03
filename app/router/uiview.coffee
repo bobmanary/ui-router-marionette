@@ -2,54 +2,94 @@ id = 0
 Marionette = require('backbone.marionette/lib/backbone.marionette')
 { ResolveContext } = require('ui-router-core')
 
-# Marionette.Region::initialize = (options) ->
-  # If Marionette provided a way to use custom region classes on a per-layout
-  # basis I could register UIViews here but I don't want to do it globally
-  # and attempt to register regions that aren't being managed by ui-router.
 
 
 exports.UIViewMarionette = class UIViewMarionette extends Marionette.Object
+  # Side note:
+  # If Marionette provided a way to use custom Region subclasses on a per-View
+  # basis I could register ui-views directly in the Region constructor instead
+  # of having this separate UIViewMarionette class and a custom
+  # LayoutView subclass, but I don't want to do that globally and attempt to
+  # register regions that aren't going to be managed by ui-router.
 
   initialize: (@router, mnLayout, @mnRegion, mnRegionName) ->
-    @viewConfig = null
+    console.log 'new uiview ' + mnRegionName
+    # Leverage Marionette's view lifecycle to know when to unregister
+    # the ui-view
     @listenTo mnLayout, "before:destroy", @destroy
 
+    # Except for the top-level region passed to router.start(), a name should
+    # always be provided (even if it is '$default')
     name = mnRegionName || '$default'
-
-    rootContext = @router.stateRegistry.root()
-    parentContext = mnLayout?.parent?.uiView?.viewConfig?.viewDecl?.$context
+    # TBH I'm not entirely sure what the context is for.
+    parentContext = mnLayout?.parent?.uiView?.activeUIView.config?.viewDecl?.$context
+    # nested FQNs will end up as something like
+    # '$default.$default.myNamedUIView.$default'
     parentFqn = mnLayout?.parent?.uiView?.activeUIView?.fqn
+
     @activeUIView =
       $type: 'backbone'
       id: id++
       name: name
       fqn: if parentFqn then "#{parentFqn}.#{name}" else name
-      creationContext: parentContext || rootContext
-      configUpdated: (config) =>
-        return if not config?
-        return console.error("bad config type '#{config.viewDecl.$type}'") if config.viewDecl.$type isnt 'backbone'
-        @updateView(config)
+      creationContext: parentContext || @router.stateRegistry.root()
+      configUpdated: (config) => @onConfigUpdated(config)
       config: undefined
 
   register: ->
     @deregister = @router.viewService.registerUIView(@activeUIView)
-    @updateView()
+
+  onConfigUpdated: (newConfig) ->
+    # If no config was provided (which happens right after registering this view
+    # or or when entering a state that has nothing to put in this slot), we want
+    # to make sure that the ui-view element is empty.
+    return @clearPreviousConfig() if not newConfig
+
+    # We somehow got a config for a different framework's ui-router integration
+    # (I imagine this is mainly an angular 1 to 2 migration thing?)
+    return if newConfig.viewDecl.$type isnt 'backbone'
+
+    # Got the currently active view config again.
+    return if @activeUIView.config is newConfig
+
+    @updateView(newConfig)
 
   updateView: (newConfig) ->
-    return if @viewConfig == newConfig
-    @viewConfig = newConfig
-    if newConfig?.viewDecl?.component?
-      @mnRegion.show (new newConfig.viewDecl.component(resolves: @getResolves newConfig)).getView()
+    @activeUIView.config = newConfig
 
-  getResolves: (config) ->
-    # map all resolved objects (plus stateparams and $transition$)
-    # to a plain object to pass to the component controller
+    # Create view and controller instances if they were specified in the
+    # state config.
+    resolved = @getResolved(newConfig)
+    view = @getView(newConfig, resolved: resolved)
+    controller = @getController(newConfig, resolved: resolved, view: view)
+
+    if view?
+      @mnRegion.show view
+      if controller?
+        @listenToOnce view, "destroy", -> controller.destroy()
+
+  getResolved: (config) ->
+    # Map all resolved objects (plus $stateParams and $transition$)
+    # to a plain object to pass to the view and controller
     context = new ResolveContext(config.path)
-    resolves = {}
+    resolved = {}
     keys = _.filter context.getTokens(), (token) -> typeof token is 'string'
-    resolves[key] = context.getResolvable(key).data for key in keys
+    resolved[key] = context.getResolvable(key).data for key in keys
 
-    return resolves
+    return resolved
+
+  getView: (config, viewOptions) ->
+    if config?.viewDecl?.view?
+      view = new config.viewDecl.view(viewOptions)
+
+  getController: (config, controllerOptions) ->
+    if config?.viewDecl?.controller?
+      return new config.viewDecl.controller(controllerOptions)
+
+  clearPreviousConfig: ->
+    @mnRegion.empty()
+    @activeUIView.view? && @activeUIView.controller?.triggerMethod('view:destroyed')
+    @activeUIView.config = undefined
 
   onBeforeDestroy: ->
     @deregister?()

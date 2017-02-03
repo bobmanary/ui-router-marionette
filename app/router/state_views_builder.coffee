@@ -16,7 +16,7 @@ hasAnyKey = (keys, obj) ->
 exports.mnViewsBuilder = (state) ->
   return if not state.parent
 
-  keys = ['component', 'view', 'controller']
+  keys = ['view', 'controller']
 
   views = {}
   viewsObject = state.views or {$default: _.pick(state, keys)}
@@ -41,7 +41,7 @@ exports.mnViewsBuilder = (state) ->
 exports.MnViewConfig = class MnViewConfig
   constructor: (@path, @viewDecl) ->
     @loaded = true
-    @id = viewConfigId++
+    @$id = viewConfigId++
 
   load: ->
     services.$q.when(@)

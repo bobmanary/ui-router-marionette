@@ -4,22 +4,21 @@
 
 
 
-  class Layout extends Marionette.ItemView
-    behaviors:
-      UISref: {}
-    template: require('./templates/client_contact')
-    serializeData: ->
-      _.extend @options.resolves.client.toJSON(),
-        items: @options.resolves.clientPhoneNumbers.toJSON()
-        params: (p) ->
-          try
-            return JSON.stringify(p)
-          return '{}'
+  class ClientContactRowView extends Marionette.ItemView
+    template: require('./templates/client_contact_row')
 
 
 
-  module.exports = class ClientContactComponent extends Marionette.Object
-    view: Layout
+  exports.ClientContactView = class ClientContactView extends Marionette.CollectionView
+    childView: ClientContactRowView
+    initialize: (options) ->
+      @collection = options.resolved.clientPhoneNumbers
+      console.log 'ClientContactView', arguments
 
-    getView: ->
-      @_view or= new @view _.extend {}, @options, controller: @
+
+
+  exports.ClientContactController = class ClientContactController extends Marionette.Object
+    initialize: ({ view })->
+      console.log 'ClientContactController', arguments
+      @listenTo view, 'destroy', ->
+        console.log "ClientContactController's view was destroyed"

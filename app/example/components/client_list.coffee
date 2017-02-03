@@ -2,14 +2,23 @@
 
   UILayoutMn2 = require('../../router/ui_layout_mn2')
 
-  class ClientListView extends Marionette.ItemView
+  exports.ClientListView = class ClientListView extends Marionette.ItemView
+    behaviors:
+      UISref: {}
+    initialize: (options) ->
+      console.log 'ClientListView', arguments
+      @collection = options.resolved.clients
     template: require('./templates/client_list')
     serializeData: ->
-      items: @options.resolves.clients.toJSON()
+      _.extend super,
+        params: (p) ->
+          try
+            return JSON.stringify(p)
+          return '{}'
 
 
-  module.exports = class ClientListComponent extends Marionette.Object
-    view: ClientListView
 
-    getView: ->
-      @_view or= new @view _.extend {}, @options, controller: @
+  exports.ClientListController = class ClientListController extends Marionette.Object
+    initialize: ->
+      console.log 'ClientListController', arguments
+

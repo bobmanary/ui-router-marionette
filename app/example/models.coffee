@@ -1,8 +1,8 @@
 testData = [
-  {id: 1, first_name: "Theodore", last_name: "Logan", location: "CA"}
-  {id: 2, first_name: "William", last_name: "Preston", location: "CA"}
-  {id: 3, first_name: "Louise", last_name: "Sawyer", location: "AZ"}
-  {id: 4, first_name: "Thelma", last_name: "Dickinson", location: "AZ"}
+  {id: 1, first_name: "Theodore", last_name: "Logan", location: "CA", member_since: '2005-01-23'}
+  {id: 2, first_name: "William", last_name: "Preston", location: "CA", member_since: '2016-07-01'}
+  {id: 3, first_name: "Louise", last_name: "Sawyer", location: "AZ", member_since: '2012-12-28'}
+  {id: 4, first_name: "Thelma", last_name: "Dickinson", location: "AZ", member_since: '1999-11-17'}
 ]
 
 resolveDelay = 100

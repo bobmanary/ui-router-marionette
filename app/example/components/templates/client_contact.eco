@@ -1,7 +1,3 @@
-<h3>Client: <%= "#{@first_name} #{@last_name}" %> - Contact Info</h3>
-<a ui-sref="app.client.overview" ui-sparams="<%= @params(id: @id) %>">Details</a> |
-<a ui-sref="app.client.contact"  ui-sparams="<%= @params(id: @id) %>">Contact Info</a>
-<hr>
 <% for phone in @items: %>
   Phone: <%= phone.number %><br>
   Extension: <%= phone.ext || '-' %><br>
