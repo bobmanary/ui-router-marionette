@@ -13,14 +13,17 @@ Accessible at `http://localhost:3332`.
 
 
 ## To do:
-
-- Better documentation
+### Router
+- Fill in documentation
 - Missing state options
-- Behavior for active state class toggling
-- Better separation of core code and example app
-- Improve example app
+- Add a Marionette Behavior for active state class toggling
 - Investigate Marionette 3 support
-- ...everything.
+- Building as a release library (including better separation of router code and example app)
+
+### Example App
+- Auth redirect
+- Editing models with dirty checking before state changes
+
 
 ## Usage:
 
