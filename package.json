@@ -1,7 +1,7 @@
 {
   "author": "Bob Manary",
   "name": "ui-router-marionette",
-  "description": "Front End Web Application for Ample Organics",
+  "description": "Front-end router for Backbone Marionette web apps using the ui-router core",
   "version": "0.0.1",
   "homepage": "https://github.com/bobmanary/ui-router-marionette",
   "engines": {
