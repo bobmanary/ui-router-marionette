@@ -4,6 +4,7 @@ module.exports = do (Marionette, $) ->
   Marionette.Behaviors.behaviorsLookup = ->
     # Import Marionette behaviors for state lookup/active state
     UISref: require('../router/marionette/behaviors').UISref
+    UISrefActive: require('../router/marionette/behaviors').UISrefActive
 
   App.addRegions
     rootRegion: '#root'

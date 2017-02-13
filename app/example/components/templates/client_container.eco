@@ -1,5 +1,5 @@
 <h3>Client: <%= "#{@first_name} #{@last_name}" %></h3>
-<a ui-sref="app.clients.client.overview" ui-sparams="<%= @params(id: @id) %>">Details</a> |
-<a ui-sref="app.clients.client.contact"  ui-sparams="<%= @params(id: @id) %>">Contact Info</a>
+<a ui-sref="app.clients.client.overview" ui-sparams="<%= @params(id: @id) %>" ui-sref-active="app.clients.client.overview">Details</a> |
+<a ui-sref="app.clients.client.contact"  ui-sparams="<%= @params(id: @id) %>" ui-sref-active="app.clients.client.contact">Contact Info</a>
 <hr>
 <div ui-view></div>

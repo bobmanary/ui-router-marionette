@@ -7,6 +7,8 @@
       '$default': '[ui-view]'
     behaviors:
       UISref: {}
+      UISrefActive: {activeClasses: 'state-is-active'}
+
     template: require('./templates/client_container')
     initialize: (options) ->
       @model = options.resolved.client
