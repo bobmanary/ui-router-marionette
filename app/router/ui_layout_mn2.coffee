@@ -1,9 +1,10 @@
 { UIViewMarionette } = require('./uiview')
 { UIRouterMarionette } = require('./index')
-
+path = 'backbone.marionette'
+Mn = window.Marionette || require(path)
 # A layout view for Marionette 2.x apps.
 # When the regions are created they also get registered as UIViews.
-module.exports = class UILayoutMn2 extends Marionette.LayoutView
+module.exports = class UILayoutMn2 extends Mn.LayoutView
   constructor: ->
     super
 

@@ -5,7 +5,7 @@ exports.config =
     javascripts:
       joinTo:
         'javascripts/app.js': /^app\//
-        'javascripts/vendor.js': /(vendor|node_modules)\//
+        'javascripts/vendor.js': /(node_modules)\//
         # 'javascripts/vendor.js': [
         #   'node_modules/jquery/dist/jquery.js'
         #   'node_modules/underscore/underscore.js'
@@ -34,3 +34,16 @@ exports.config =
   overrides:
     production:
       sourceMaps: true
+      conventions:
+        assets: null
+      files:
+        stylesheets:
+          joinTo: {}
+        templates:
+          joinTo: {}
+        javascripts:
+          entryPoints:
+            "app/index.coffee": 'ui-router-marionette.js'
+          joinTo:
+            'javascripts/app.js': null
+            'javascripts/vendor.js': null

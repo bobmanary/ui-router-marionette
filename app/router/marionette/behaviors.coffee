@@ -1,4 +1,5 @@
-Mn = require('backbone.marionette')
+path = 'backbone.marionette'
+Mn = window.Marionette || require(path)
 { UIRouterMarionette } = require('../index')
 
 

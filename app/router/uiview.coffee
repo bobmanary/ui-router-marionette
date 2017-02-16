@@ -1,10 +1,11 @@
 id = 0
-Marionette = require('backbone.marionette/lib/backbone.marionette')
+path = 'backbone.marionette'
+Mn = window.Marionette || require(path)
 { ResolveContext } = require('ui-router-core')
 
 
 
-exports.UIViewMarionette = class UIViewMarionette extends Marionette.Object
+exports.UIViewMarionette = class UIViewMarionette extends Mn.Object
   # Side note:
   # If Marionette provided a way to use custom Region subclasses on a per-View
   # basis I could register ui-views directly in the Region constructor instead

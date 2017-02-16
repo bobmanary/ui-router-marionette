@@ -9,9 +9,9 @@ require('ui-router-core/lib/index.js')
 
 
 # marionette ui-router integration
-require('./router')
+require('./index')
 
 
-# (broken) basic example app
+# basic example app
 window.App = require('./example')
 App.start()
