@@ -5,6 +5,7 @@
   exports.ClientListView = class ClientListView extends Marionette.ItemView
     behaviors:
       UISref: {}
+      UISrefActive: {}
     initialize: (options) ->
       console.log 'ClientListView', arguments
       @collection = options.resolved.clients

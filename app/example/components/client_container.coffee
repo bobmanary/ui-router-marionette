@@ -7,7 +7,7 @@
       '$default': '[ui-view]'
     behaviors:
       UISref: {}
-      UISrefActive: {activeClasses: 'state-is-active'}
+      UISrefActive: {activeClasses: 'state-is-active'} # apply custom css class for active states
 
     template: require('./templates/client_container')
     initialize: (options) ->

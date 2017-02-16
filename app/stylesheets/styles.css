@@ -31,3 +31,13 @@ h2, h3 {
   border: 1px solid #888844;
   margin: 5px;
 }
+
+.state-is-active {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.ui-state-active {
+  font-weight: bold;
+  background-color: #78a4c3;
+}

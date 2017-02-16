@@ -1,6 +1,6 @@
 <h3>Clients</h3>
 <ul>
   <% for client in @items: %>
-  <li><a ui-sref="app.clients.client.overview" ui-sparams="<%= @params(id: client.id) %>"><%= "#{client.first_name} #{client.last_name}" %></a></li>
+  <li><a ui-sref="app.clients.client.overview" ui-sparams="<%= @params(id: client.id) %>" ui-sref-active="app.clients.client"><%= "#{client.first_name} #{client.last_name}" %></a></li>
   <% end %>
 </ul>
