@@ -29,7 +29,7 @@ var config = {
 		]
 	},
 	externals: {
-		"Marionette": { root: 'Marionette', amd: 'backbone.marionette', commonjs2: 'backbone.marionette', commonjs: 'backbone.marionette' }
+		"backbone.marionette": { root: 'Marionette', amd: 'backbone.marionette', commonjs2: 'backbone.marionette', commonjs: 'backbone.marionette' }
 	}
 };
 

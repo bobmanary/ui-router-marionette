@@ -1,0 +1,3 @@
+<h2>Root component</h2>
+<div ui-view="clientList"></div>
+<div ui-view="clientInfo"></div>
