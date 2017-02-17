@@ -1,4 +1,0 @@
-<h5>Contact method</h5>
-Phone: <%= @number %><br>
-Extension: <%= @ext || '-' %><br>
-Type: <%= @type || '-' %>

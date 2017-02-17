@@ -1,2 +1,0 @@
-<p>Member since: <%= @member_since %></p>
-<p>Location: <%= @location %></p>

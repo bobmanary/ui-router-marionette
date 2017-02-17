@@ -12,15 +12,19 @@
     "start": "brunch watch --server -j 2 --port 3332"
   },
   "dependencies": {
-    "backbone.marionette": "^2.4.7",
-    "jquery": "^3.1.1",
-    "ui-router-core": "^3.1.1",
-    "ui-router-visualizer": "^3.1.1"
+    "ui-router-core": "^3.1.1"
   },
   "devDependencies": {
+    "backbone.marionette": "^2.4.7",
+    "coffee-loader": "^0.7.2",
     "coffee-script-brunch": "1.8.x",
     "css-brunch": "1.7.x",
     "eco-brunch": "1.7.x",
-    "javascript-brunch": "1.8.x"
+    "eco-loader": "^0.1.0",
+    "javascript-brunch": "1.8.x",
+    "shx": "^0.2.2",
+    "ui-router-visualizer": "^3.1.1",
+    "webpack": "^2.2.1",
+    "webpack-dev-server": "^2.3.0"
   }
 }
