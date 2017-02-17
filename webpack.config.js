@@ -29,7 +29,8 @@ var config = {
 		]
 	},
 	externals: {
-		"backbone.marionette": { root: 'Marionette', amd: 'backbone.marionette', commonjs2: 'backbone.marionette', commonjs: 'backbone.marionette' }
+		"backbone.marionette": { root: 'Marionette', amd: 'backbone.marionette', commonjs2: 'backbone.marionette', commonjs: 'backbone.marionette' },
+		"underscore": { root: '_', amd: 'underscore', commonjs2: 'underscore', commonjs: 'underscore' }
 	}
 };
 
