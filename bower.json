@@ -23,9 +23,10 @@
     "src",
     "example",
     "README.md",
-    "package.json"
+    "package.json",
+    "webpack.*.js"
   ],
   "dependencies": {
-    "marionette": "^2.4.0"
+    "backbone.marionette": "^2.4.0"
   }
 }
