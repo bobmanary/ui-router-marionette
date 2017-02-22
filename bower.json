@@ -23,8 +23,7 @@
     "src",
     "example",
     "README.md",
-    "package.json",
-
+    "package.json"
   ],
   "dependencies": {
     "marionette": "^2.4.0"
