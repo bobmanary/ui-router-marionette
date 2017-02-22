@@ -1,4 +1,4 @@
-@App.module "Example", (Example, App, Backbone, Marionette, $, _) ->
+window.App.module "Example", (Example, App, Backbone, Marionette, $, _) ->
 
   { ClientListView, ClientListController } = require('./components/client_list')
   { ClientOverviewView, ClientOverviewController } = require('./components/client_overview')

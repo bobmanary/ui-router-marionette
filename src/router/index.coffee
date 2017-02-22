@@ -36,4 +36,6 @@ class UIRouterMarionette extends UIRouter
     return @
 
 
-_.extend exports, { UIViewMarionette, UIRouterMarionette }
+
+exports.UIViewMarionette = UIViewMarionette
+exports.UIRouterMarionette = UIRouterMarionette

@@ -1,6 +1,5 @@
 id = 0
-path = 'backbone.marionette'
-Mn = window.Marionette || require(path)
+Mn = require('backbone.marionette')
 { ResolveContext } = require('ui-router-core')
 
 
