@@ -1,0 +1,32 @@
+{
+  "name": "ui-router-marionette",
+  "description": "Front-end router for Backbone Marionette web apps using the ui-router core",
+  "main": "dist/ui-router-marionette.js",
+  "authors": [
+    "Bob Manary"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "ui-router",
+    "ui",
+    "router",
+    "routing",
+    "backbone",
+    "marionette"
+  ],
+  "homepage": "https://github.com/bobmanary/ui-router-marionette",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "lib",
+    "src",
+    "example",
+    "README.md",
+    "package.json",
+
+  ],
+  "dependencies": {
+    "marionette": "^2.4.0"
+  }
+}

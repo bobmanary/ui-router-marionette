@@ -7,7 +7,7 @@ var config = {
 		"ui-router-marionette.min": ["./src/index.coffee"]
 	},
 	output: {
-		path: path.resolve(__dirname, "_bundles"),
+		path: path.resolve(__dirname, "dist"),
 		filename: "[name].js",
 		libraryTarget: "umd",
 		library: "UIRouterMarionette",
