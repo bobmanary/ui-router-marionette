@@ -23,8 +23,11 @@ class UIRouterMarionette extends UIRouter
     @stateRegistry.decorator("views", mnViewsBuilder)
     routerInstance = @
 
-  start: (@rootRegion) ->
+  start: (@rootRegion, options) ->
     throw new Error("Router was already started") if @_started
+
+    if options?
+      @handleOptions(options)
 
     @rootRegion.uiView = new UIViewMarionette(@, null, @rootRegion, "")
     @rootRegion.uiView.register()
@@ -35,7 +38,16 @@ class UIRouterMarionette extends UIRouter
     @_started = true
     return @
 
+  handleOptions: (options) ->
+    if typeof options.onMarionetteRoute is 'function'
+      @patchMnRouter(options.onMarionetteRoute)
+
+  patchMnRouter: (onRoute) ->
+    oldProcessOnRoute = Marionette.AppRouter::_processOnRoute
+    Marionette.AppRouter::_processOnRoute = (routeName, routeArgs) ->
+      onRoute.call(@, routeName, routeArgs)
+      oldProcessOnRoute.call(@, routeName, routeArgs)
 
 
 exports.UIViewMarionette = UIViewMarionette
-exports.UIRouterMarionette = UIRouterMarionette
+exports.Router = UIRouterMarionette
