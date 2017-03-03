@@ -66,7 +66,8 @@ exports.UIViewMarionette = class UIViewMarionette extends Mn.Object
     if view?
       @mnRegion.show view
       if controller?
-        @listenToOnce view, "destroy", -> controller.destroy()
+        @listenToOnce view, "destroy", ->
+          controller.destroy()
 
   getResolved: (config) ->
     # Map all resolved objects (plus $stateParams and $transition$)

@@ -2,19 +2,19 @@ _ = require('underscore')
 {
   $q
   UIViewMarionette
-  UIRouterMarionette
+  Router
 } = require('./router')
 
 {
   UISref
   UISrefActive
-} = require('./router/marionette/behaviors')
+} = require('./marionette/behaviors')
 
-UILayoutMn2 = require('./router/ui_layout_mn2')
+UILayoutMn2 = require('./ui_layout_mn2')
 
 
 _.extend exports, {
-  UIRouterMarionette
+  Router
   UISref
   UISrefActive
   UILayoutMn2

@@ -1,5 +1,5 @@
 { UIViewMarionette } = require('./uiview')
-{ UIRouterMarionette } = require('./index')
+{ UIRouterMarionette } = require('./router')
 Mn = require('backbone.marionette')
 # A layout view for Marionette 2.x apps.
 # When the regions are created they also get registered as UIViews.

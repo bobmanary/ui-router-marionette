@@ -39,14 +39,16 @@ class UIRouterMarionette extends UIRouter
     return @
 
   handleOptions: (options) ->
-    if typeof options.onMarionetteRoute is 'function'
-      @patchMnRouter(options.onMarionetteRoute)
+    if typeof options.onMnRoute is 'function'
+      @onMnRoute(options.onMnRoute)
 
-  patchMnRouter: (onRoute) ->
+  onMnRoute: (onRoute) ->
     oldProcessOnRoute = Marionette.AppRouter::_processOnRoute
-    Marionette.AppRouter::_processOnRoute = (routeName, routeArgs) ->
-      onRoute.call(@, routeName, routeArgs)
-      oldProcessOnRoute.call(@, routeName, routeArgs)
+    uiRouter = @
+    Marionette.AppRouter::_processOnRoute = (mnRouteName, mnRouteArgs) ->
+      mnRoutePath = _.invert(this.getOption('appRoutes'))[mnRouteName]
+      onRoute.call(@, mnRouteName, mnRouteArgs, mnRoutePath, uiRouter.stateService)
+      oldProcessOnRoute.call(@, mnRouteName, mnRouteArgs)
 
 
 exports.UIViewMarionette = UIViewMarionette
