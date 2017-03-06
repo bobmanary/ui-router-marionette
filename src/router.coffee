@@ -23,6 +23,11 @@ class UIRouterMarionette extends UIRouter
     @stateRegistry.decorator("views", mnViewsBuilder)
     routerInstance = @
 
+  addState: (def) ->
+    # shortcut for adding a new state definition
+    @stateRegistry.register(def)
+    return @
+
   start: (@rootRegion, options) ->
     throw new Error("Router was already started") if @_started
 
