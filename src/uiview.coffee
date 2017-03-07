@@ -66,6 +66,9 @@ exports.UIViewMarionette = class UIViewMarionette extends Mn.Object
     if view?
       @mnRegion.show view
       if controller?
+        controller.triggerMethod("ui:view:show")
+        # this could be buggy if user specifies controller without view
+        # (zombie controllers)
         @listenToOnce view, "destroy", ->
           controller.destroy()
 
