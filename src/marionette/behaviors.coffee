@@ -1,5 +1,5 @@
 Mn = require('backbone.marionette')
-{ UIRouterMarionette } = require('../index')
+{ Router } = require('../router')
 
 
 # A helper behavior for linking to states with or without state parameters.
@@ -26,7 +26,7 @@ exports.UISref = class UISref extends Mn.Behavior
   onAttach: ->
     # Go through all the ui-sref links and turn their ui-sref and HTML-escaped
     # ui-sparams attributes into a functioning app state link
-    router = UIRouterMarionette.getInstance()
+    router = Router.getInstance()
     @ui.sref.each (i, e) ->
       e = $(e)
       state = e.attr('ui-sref')
@@ -61,7 +61,7 @@ exports.UISrefActive = class UISrefActive extends Mn.Behavior
     activeClasses: 'ui-state-active'
 
   initialize: ->
-    @router = UIRouterMarionette.getInstance()
+    @router = Router.getInstance()
     @deregister = @router.transitionService.onSuccess {}, (transition) => @onStateChange()
 
   onRender: ->

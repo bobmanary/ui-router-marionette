@@ -1,5 +1,5 @@
 { UIViewMarionette } = require('./uiview')
-{ UIRouterMarionette } = require('./router')
+{ Router } = require('./router')
 Mn = require('backbone.marionette')
 # A layout view for Marionette 2.x apps.
 # When the regions are created they also get registered as UIViews.
@@ -19,7 +19,7 @@ module.exports = class UILayoutMn2 extends Mn.LayoutView
   onAttachUI: (me, parentRegion) ->
     @parent = parentRegion
     for own regionName, region of @regions
-      @[regionName].uiView = new UIViewMarionette UIRouterMarionette.getInstance(), @, @[regionName], regionName
+      @[regionName].uiView = new UIViewMarionette Router.getInstance(), @, @[regionName], regionName
       @[regionName].uiView.register()
     return
 

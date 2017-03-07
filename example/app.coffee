@@ -1,6 +1,7 @@
 Marionette = require('backbone.marionette')
+{ Router } = require('../src')
 
-{ UIRouterMarionette } = require('../src/index')
+
 
 App = new Marionette.Application
 Marionette.Behaviors.behaviorsLookup = ->
@@ -12,7 +13,7 @@ App.addRegions
   rootRegion: '#root'
 
 App.on "before:start", ->
-  @router = UIRouterMarionette.getInstance()
+  @router = Router.getInstance()
   require('./routes')
   Visualizer = require('ui-router-visualizer').Visualizer
   @router.plugin(Visualizer)

@@ -1,6 +1,7 @@
 _ = require('underscore')
+{ $q } = require('ui-router-core')
+
 {
-  $q
   UIViewMarionette
   Router
 } = require('./router')

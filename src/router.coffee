@@ -1,4 +1,4 @@
-{ UIRouter, $q } = require('ui-router-core')
+{ UIRouter } = require('ui-router-core')
 { mnViewsBuilder, MnViewConfig } = require('./state_views_builder')
 { hashLocationPlugin, servicesPlugin } = require('ui-router-core/lib/vanilla')
 { UIViewMarionette } = require('./uiview')
