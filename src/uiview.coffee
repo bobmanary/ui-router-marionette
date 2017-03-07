@@ -13,7 +13,6 @@ exports.UIViewMarionette = class UIViewMarionette extends Mn.Object
   # register regions that aren't going to be managed by ui-router.
 
   initialize: (@router, mnLayout, @mnRegion, mnRegionName) ->
-    console.log 'new uiview ' + mnRegionName
     # Leverage Marionette's view lifecycle to know when to unregister
     # the ui-view
     @listenTo mnLayout, "before:destroy", @destroy

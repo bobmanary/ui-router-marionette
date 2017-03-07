@@ -3,6 +3,8 @@
 { hashLocationPlugin, servicesPlugin } = require('ui-router-core/lib/vanilla')
 { UIViewMarionette } = require('./uiview')
 
+getStateHookBuilder = require('./hook_builder')
+
 routerInstance = null
 
 viewConfigFactory = (node, config) ->
@@ -21,6 +23,9 @@ class UIRouterMarionette extends UIRouter
     @plugin(hashLocationPlugin)
 
     @stateRegistry.decorator("views", mnViewsBuilder)
+    @stateRegistry.decorator("onExit", getStateHookBuilder("onExit"))
+    @stateRegistry.decorator("onRetain", getStateHookBuilder("onRetain"))
+    @stateRegistry.decorator("onEnter", getStateHookBuilder("onEnter"))
     routerInstance = @
 
   addState: (def) ->
