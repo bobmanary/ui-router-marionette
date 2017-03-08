@@ -51,7 +51,33 @@ exports.UISref = class UISref extends Mn.Behavior
 # class MyView extends Marionette.ItemView
 #   behaviors:
 #     UISref: {}
-#     UISrefActive: {activeClasses: 'state-is-active'}
+#     UISrefActive: {activeClasses: 'state-is-active', applyToRoot: true, rootStateModelAttribute: 'state'}
+#
+# Behavior options:
+# - activeClasses   - string. List of css classes to apply to elements when their
+#                     state is active.
+#
+# - applyToRoot     - boolean. Toggle applying active classes to the
+#                     root element. If you're using this option you also
+#                     likely want to set modelStateField. State params are not
+#                     currently supported for root elements with this option.
+#
+# - modelStateField - string. If the parent view has a backbone model,
+#                     look at this field on that model to determine
+#                     which state to compare against.
+#                     eg:
+#                     class MyView extends Marionette.ItemView
+#                       behaviors:
+#                         UISrefActive: {
+#                           applyToRoot: true,
+#                           modelStateField: "active_state"
+#                         }
+#                     ...
+#                     navItem = new NavbarItemModel({
+#                     state: "app.clients.details",
+#                        name: "Details"
+#                     })
+#                     view = new MyView({model: navItem})
 #
 exports.UISrefActive = class UISrefActive extends Mn.Behavior
   ui:
@@ -59,6 +85,8 @@ exports.UISrefActive = class UISrefActive extends Mn.Behavior
 
   defaults:
     activeClasses: 'ui-state-active'
+    applyToRoot: false
+    modelStateField: 'state'
 
   initialize: ->
     @router = Router.getInstance()
@@ -68,6 +96,13 @@ exports.UISrefActive = class UISrefActive extends Mn.Behavior
     @onStateChange()
 
   onStateChange: ->
+    if @getOption('applyToRoot')
+      # state params are not supported on the view root element
+      compareState = @view.model?.get(@getOption('modelStateField'))
+      if compareState?
+        classFn = if @router.stateService.includes(compareState) then 'addClass' else 'removeClass'
+        @$el[classFn](@options.activeClasses)
+
     @ui.active.each (i, el) =>
       $el = $(el)
       params = $el.attr('ui-sparams')
