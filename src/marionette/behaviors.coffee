@@ -36,6 +36,14 @@ exports.UISref = class UISref extends Mn.Behavior
 
       e.attr('href', url)
 
+      # prevent the url from changing before state transition happens
+      e.click (event) ->
+        button = event.which
+        # ignore if this isn't a regular left click (enter key appears to be
+        # treated as a regular left click)
+        return if button > 1 || event.shiftKey || event.metaKey || event.altKey || event.ctrlKey || e.attr('target')
+        router.stateService.go(state, params)
+        event.preventDefault()
 
 
 # A behavior to toggle CSS classes on an element when a particular state
