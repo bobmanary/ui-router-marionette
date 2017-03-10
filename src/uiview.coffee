@@ -71,6 +71,9 @@ exports.UIViewMarionette = class UIViewMarionette extends Mn.Object
         @listenToOnce view, "destroy", ->
           controller.destroy()
 
+    state = newConfig.path[newConfig.path.length-1].state.self
+    @registerEventCallbacks(state, view, controller)
+
   getResolved: (config) ->
     # Map all resolved objects (plus $stateParams and $transition$)
     # to a plain object to pass to the view and controller
@@ -88,6 +91,18 @@ exports.UIViewMarionette = class UIViewMarionette extends Mn.Object
   getController: (config, controllerOptions) ->
     if config?.viewDecl?.controller?
       return new config.viewDecl.controller(controllerOptions)
+
+  registerEventCallbacks: (state, view, controller) ->
+    criteria = {exiting: state.name}
+    @registerExitCallback(view, criteria) if view?
+    @registerExitCallback(controller, criteria) if controller?
+
+  registerExitCallback: (component, criteria) ->
+    # call the view or controller's uiCanExit method to determine if we should
+    # leave the current state.
+    if typeof component.uiCanExit is 'function'
+      deregisterFn = @router.transitionService.onBefore criteria, component.uiCanExit, bind: component
+      component.on "destroy", -> console.log("dregistering uiCanExit for #{criteria.exiting}") && deregisterFn()
 
   clearPreviousConfig: ->
     @mnRegion.empty()
