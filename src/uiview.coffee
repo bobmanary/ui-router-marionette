@@ -102,7 +102,7 @@ exports.UIViewMarionette = class UIViewMarionette extends Mn.Object
     # leave the current state.
     if typeof component.uiCanExit is 'function'
       deregisterFn = @router.transitionService.onBefore criteria, component.uiCanExit, bind: component
-      component.on "destroy", -> console.log("dregistering uiCanExit for #{criteria.exiting}") && deregisterFn()
+      component.on "destroy", deregisterFn
 
   clearPreviousConfig: ->
     @mnRegion.empty()
