@@ -1,24 +1,36 @@
-{ ResolveContext } = require('ui-router-core')
+/*
+ * decaffeinate suggestions:
+ * DS101: Remove unnecessary use of Array.from
+ * DS207: Consider shorter variations of null checks
+ * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
+ */
+let getStateHookBuilder;
+import { ResolveContext } from 'ui-router-core';
 
-getLocals = (resolveContext) ->
-  # return a {k:v} map of the resolved objects for this state
-  tokens = _.filter resolveContext.getTokens(), (token) -> typeof token is 'string'
-  tuples = {}
-  for key in tokens
-    resolvable = resolveContext.getResolvable(key)
-    waitPolicy = resolveContext.getPolicy(resolvable).async
-    tuples[key] = if waitPolicy is 'NOWAIT' then resolvable.promise else resolvable.data
-  return tuples
+const getLocals = function(resolveContext) {
+  // return a {k:v} map of the resolved objects for this state
+  const tokens = _.filter(resolveContext.getTokens(), token => typeof token === 'string');
+  const tuples = {};
+  for (let key of Array.from(tokens)) {
+    const resolvable = resolveContext.getResolvable(key);
+    const waitPolicy = resolveContext.getPolicy(resolvable).async;
+    tuples[key] = waitPolicy === 'NOWAIT' ? resolvable.promise : resolvable.data;
+  }
+  return tuples;
+};
 
-module.exports = getStateHookBuilder = (hookName) ->
-  # hookName = "onEnter"|"onExit"|"onRetain"
-  return (state, parentFn) ->
-    hook = state[hookName]
-    pathname = if hookName is 'onExit' then 'from' else 'to'
+export default (getStateHookBuilder = hookName =>
+  // hookName = "onEnter"|"onExit"|"onRetain"
+  function(state, parentFn) {
+    const hook = state[hookName];
+    const pathname = hookName === 'onExit' ? 'from' : 'to';
 
-    decoratedHook = (transition, state) ->
-      resolveContext = new ResolveContext(transition.treeChanges(pathname))
-      locals = getLocals(resolveContext)
-      return hook(transition, state, locals)
+    const decoratedHook = function(transition, state) {
+      const resolveContext = new ResolveContext(transition.treeChanges(pathname));
+      const locals = getLocals(resolveContext);
+      return hook(transition, state, locals);
+    };
 
-    return decoratedHook if hook?
+    if (hook != null) { return decoratedHook; }
+  }
+);

@@ -1,11 +1,30 @@
-window.App.module "Example", (Example, App, Backbone, Marionette, $, _) ->
+/*
+ * decaffeinate suggestions:
+ * DS102: Remove unnecessary code created because of implicit returns
+ * DS206: Consider reworking classes to avoid initClass
+ * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
+ */
+let defaultExport = {};
+window.App.module("Example", function(Example, App, Backbone, Marionette, $, _) {
 
-  { UILayoutMn2 } = require('../../src/index')
+  let RootLayout;
+  const { UILayoutMn2 } = require('../../src/index');
 
-  exports.RootLayout = class RootLayout extends UILayoutMn2
-    initialize: ->
-      console.log 'RootLayout', arguments
-    template: require('./templates/root')
-    regions:
-      'clientInfo': '[ui-view=clientInfo]'
-      'clientList': '[ui-view=clientList]'
+  return defaultExport.RootLayout = (RootLayout = (function() {
+    RootLayout = class RootLayout extends UILayoutMn2 {
+      static initClass() {
+        this.prototype.template = require('./templates/root');
+        this.prototype.regions = {
+          'clientInfo': '[ui-view=clientInfo]',
+          'clientList': '[ui-view=clientList]'
+        };
+      }
+      initialize() {
+        return console.log('RootLayout', arguments);
+      }
+    };
+    RootLayout.initClass();
+    return RootLayout;
+  })());
+});
+export default defaultExport;

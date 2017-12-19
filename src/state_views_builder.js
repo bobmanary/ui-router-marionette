@@ -1,47 +1,64 @@
-# state->view logic specific to backbone (marionette)
-# ref: ui-router-ng1/statebuilders/views.ts
+/*
+ * decaffeinate suggestions:
+ * DS102: Remove unnecessary code created because of implicit returns
+ * DS207: Consider shorter variations of null checks
+ * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
+ */
+// state->view logic specific to backbone (marionette)
+// ref: ui-router-ng1/statebuilders/views.ts
 
-# guess there's some missing magic here
+// guess there's some missing magic here
 
-{ services, ViewService, ResolveContext, Resolvable } = require('ui-router-core')
-# AppLayout = require('javascripts/lib/views/layout')
-viewConfigId = 0
+let MnViewConfig;
+import { services, ViewService, ResolveContext, Resolvable } from 'ui-router-core';
+// AppLayout = require('javascripts/lib/views/layout')
+let viewConfigId = 0;
 
-hasAnyKey = (keys, obj) ->
-  # unused, copied from ui-router for ng1
-  _.reduce keys, ((memo, key) -> memo or obj[key]?), false
-
-
-
-exports.mnViewsBuilder = (state) ->
-  return if not state.parent
-
-  keys = ['view', 'controller']
-
-  views = {}
-  viewsObject = state.views or {$default: _.pick(state, keys)}
-
-  _.each viewsObject, (config, name) ->
-    name = name or '$default'
-
-    config.resolveAs = config.resolveAs or '$resolve'
-    config.$type = 'backbone'
-    config.$context = state
-    config.$name = name
-
-    normalized = ViewService.normalizeUIViewTarget config.$context, config.$name
-    config.$uiViewName = normalized.uiViewName
-    config.$uiViewContextAnchor = normalized.uiViewContextAnchor
-    views[name] = config
-
-  return views
+const hasAnyKey = (keys, obj) =>
+  // unused, copied from ui-router for ng1
+  _.reduce(keys, ((memo, key) => memo || (obj[key] != null)), false)
+;
 
 
 
-exports.MnViewConfig = class MnViewConfig
-  constructor: (@path, @viewDecl) ->
-    @loaded = true
-    @$id = viewConfigId++
+let defaultExport = {};
+defaultExport.mnViewsBuilder = function(state) {
+  if (!state.parent) { return; }
 
-  load: ->
-    services.$q.when(@)
+  const keys = ['view', 'controller'];
+
+  const views = {};
+  const viewsObject = state.views || {$default: _.pick(state, keys)};
+
+  _.each(viewsObject, function(config, name) {
+    name = name || '$default';
+
+    config.resolveAs = config.resolveAs || '$resolve';
+    config.$type = 'backbone';
+    config.$context = state;
+    config.$name = name;
+
+    const normalized = ViewService.normalizeUIViewTarget(config.$context, config.$name);
+    config.$uiViewName = normalized.uiViewName;
+    config.$uiViewContextAnchor = normalized.uiViewContextAnchor;
+    return views[name] = config;
+  });
+
+  return views;
+};
+
+
+
+defaultExport.MnViewConfig = (MnViewConfig = class MnViewConfig {
+  constructor(path, viewDecl) {
+    this.path = path;
+    this.viewDecl = viewDecl;
+    this.loaded = true;
+    this.$id = viewConfigId++;
+  }
+
+  load() {
+    return services.$q.when(this);
+  }
+});
+export default defaultExport;

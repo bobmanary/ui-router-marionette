@@ -1,22 +1,46 @@
-window.App.module "Example", (Example, App, Backbone, Marionette, $, _) ->
+/*
+ * decaffeinate suggestions:
+ * DS102: Remove unnecessary code created because of implicit returns
+ * DS206: Consider reworking classes to avoid initClass
+ * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
+ */
+let defaultExport = {};
+window.App.module("Example", function(Example, App, Backbone, Marionette, $, _) {
 
-  { UILayoutMn2 } = require('../../src/index')
+  let ClientOverviewController, ClientOverviewView;
+  const { UILayoutMn2 } = require('../../src/index');
 
-  exports.ClientOverviewView = class ClientOverviewView extends Marionette.ItemView
-    initialize: ->
-      console.log 'ClientOverviewView', arguments
-    template: require('./templates/client_overview')
-    serializeData: ->
-      @options.resolved.client.toJSON()
+  defaultExport.ClientOverviewView = (ClientOverviewView = (function() {
+    ClientOverviewView = class ClientOverviewView extends Marionette.ItemView {
+      static initClass() {
+        this.prototype.template = require('./templates/client_overview');
+      }
+      initialize() {
+        return console.log('ClientOverviewView', arguments);
+      }
+      serializeData() {
+        return this.options.resolved.client.toJSON();
+      }
+    };
+    ClientOverviewView.initClass();
+    return ClientOverviewView;
+  })());
 
 
 
-  exports.ClientOverviewController = class ClientOverviewController extends Marionette.Object
-    initialize: ({ @view }) ->
-      console.log 'ClientOverviewController', arguments
+  return defaultExport.ClientOverviewController = (ClientOverviewController = class ClientOverviewController extends Marionette.Object {
+    initialize({ view }) {
+      this.view = view;
+      return console.log('ClientOverviewController', arguments);
+    }
 
-    onViewDestroyed: ->
-      console.log "ClientOverviewController's view was destroyed"
+    onViewDestroyed() {
+      return console.log("ClientOverviewController's view was destroyed");
+    }
 
-    onBeforeDestroy: ->
-      console.log "ClientOverviewController is being destroyed"
+    onBeforeDestroy() {
+      return console.log("ClientOverviewController is being destroyed");
+    }
+  });
+});
+export default defaultExport;

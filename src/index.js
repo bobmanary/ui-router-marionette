@@ -1,24 +1,20 @@
-_ = require('underscore')
-{ $q } = require('ui-router-core')
+import _ from 'underscore';
+import { $q } from 'ui-router-core';
 
-{
-  UIViewMarionette
-  Router
-} = require('./router')
+import { UIViewMarionette, Router } from './router';
 
-{
-  UISref
-  UISrefActive
-} = require('./marionette/behaviors')
+import { UISref, UISrefActive } from './marionette/behaviors';
 
-UILayoutMn2 = require('./ui_layout_mn2')
+import UILayoutMn2 from './ui_layout_mn2';
 
 
-_.extend exports, {
-  Router
-  UISref
-  UISrefActive
-  UILayoutMn2
-  UIViewMarionette
+let defaultExport = {};
+_.extend(defaultExport, {
+  Router,
+  UISref,
+  UISrefActive,
+  UILayoutMn2,
+  UIViewMarionette,
   $q
-}
+});
+export default defaultExport;

@@ -1,8 +1,26 @@
-window.App.module "Example", (Example, App, Backbone, Marionette, $, _) ->
+/*
+ * decaffeinate suggestions:
+ * DS102: Remove unnecessary code created because of implicit returns
+ * DS206: Consider reworking classes to avoid initClass
+ * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
+ */
+let defaultExport = {};
+window.App.module("Example", function(Example, App, Backbone, Marionette, $, _) {
 
-  { UILayoutMn2 } = require('../../src/index')
+  let ClientPlaceholderView;
+  const { UILayoutMn2 } = require('../../src/index');
 
-  exports.ClientPlaceholderView = class ClientPlaceholderView extends Marionette.ItemView
-    initialize: ->
-      console.log 'ClientPlaceholderView', arguments
-    template: require('./templates/client_placeholder')
+  return defaultExport.ClientPlaceholderView = (ClientPlaceholderView = (function() {
+    ClientPlaceholderView = class ClientPlaceholderView extends Marionette.ItemView {
+      static initClass() {
+        this.prototype.template = require('./templates/client_placeholder');
+      }
+      initialize() {
+        return console.log('ClientPlaceholderView', arguments);
+      }
+    };
+    ClientPlaceholderView.initClass();
+    return ClientPlaceholderView;
+  })());
+});
+export default defaultExport;

@@ -1,25 +1,51 @@
-window.App.module "Example", (Example, App, Backbone, Marionette, $, _) ->
+/*
+ * decaffeinate suggestions:
+ * DS102: Remove unnecessary code created because of implicit returns
+ * DS206: Consider reworking classes to avoid initClass
+ * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
+ */
+let defaultExport = {};
+window.App.module("Example", function(Example, App, Backbone, Marionette, $, _) {
 
-  { UILayoutMn2 } = require('../../src/index')
+  let ClientListController, ClientListView;
+  const { UILayoutMn2 } = require('../../src/index');
 
-  exports.ClientListView = class ClientListView extends Marionette.ItemView
-    behaviors:
-      UISref: {}
-      UISrefActive: {}
-    initialize: (options) ->
-      console.log 'ClientListView', arguments
-      @collection = options.resolved.clients
-    template: require('./templates/client_list')
-    serializeData: ->
-      _.extend super,
-        params: (p) ->
-          try
-            return JSON.stringify(p)
-          return '{}'
+  defaultExport.ClientListView = (ClientListView = (function() {
+    ClientListView = class ClientListView extends Marionette.ItemView {
+      static initClass() {
+        this.prototype.behaviors = {
+          UISref: {},
+          UISrefActive: {}
+        };
+        this.prototype.template = require('./templates/client_list');
+      }
+      initialize(options) {
+        console.log('ClientListView', arguments);
+        return this.collection = options.resolved.clients;
+      }
+      serializeData() {
+        return _.extend(super.serializeData(...arguments), {
+          params(p) {
+            try {
+              return JSON.stringify(p);
+            } catch (error) {}
+            return '{}';
+          }
+        }
+        );
+      }
+    };
+    ClientListView.initClass();
+    return ClientListView;
+  })());
 
 
 
-  exports.ClientListController = class ClientListController extends Marionette.Object
-    initialize: ->
-      console.log 'ClientListController', arguments
+  return defaultExport.ClientListController = (ClientListController = class ClientListController extends Marionette.Object {
+    initialize() {
+      return console.log('ClientListController', arguments);
+    }
+  });
+});
+export default defaultExport;
 
