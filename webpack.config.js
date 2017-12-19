@@ -3,8 +3,8 @@ var webpack = require("webpack");
 
 var config = {
 	entry: {
-		"ui-router-marionette": ["./src/index.coffee"],
-		"ui-router-marionette.min": ["./src/index.coffee"]
+		"ui-router-marionette": ["./src/index.js"],
+		"ui-router-marionette.min": ["./src/index.js"]
 	},
 	output: {
 		path: path.resolve(__dirname, "dist"),
@@ -14,7 +14,7 @@ var config = {
 		umdNamedDefine: true
 	},
 	resolve: {
-		extensions: ["", ".coffee", ".js"]
+		extensions: ["", ".js"]
 	},
 	devtool: 'source-map',
 	plugins: [
@@ -25,11 +25,15 @@ var config = {
 	],
 	module: {
 		loaders: [
-      { test: /\.coffee$/, loader: "coffee-loader" }
+      {
+        test   : /.js$/,
+        loader : 'babel-loader'
+      }
 		]
 	},
 	externals: {
 		"backbone.marionette": { root: 'Marionette', amd: 'backbone.marionette', commonjs2: 'backbone.marionette', commonjs: 'backbone.marionette' },
+		"jquery": "jQuery",
 		"underscore": { root: '_', amd: 'underscore', commonjs2: 'underscore', commonjs: 'underscore' }
 	}
 };

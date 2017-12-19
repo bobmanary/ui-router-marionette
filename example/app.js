@@ -6,14 +6,12 @@
  * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
  */
 import Marionette from 'backbone.marionette';
-import { Router } from '../src';
-
+import { Router, UISref, UISrefActive } from '../src'
 
 
 const App = new Marionette.Application;
 Marionette.Behaviors.behaviorsLookup = function() {
   // Import Marionette behaviors for UI-Router state links and active state
-  const { UISref, UISrefActive } = require('../src/index');
   return { UISref, UISrefActive };
 };
 

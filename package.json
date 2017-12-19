@@ -14,9 +14,9 @@
     "ui-router-core": "^3.1.1"
   },
   "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^6.4.1",
     "backbone.marionette": "^2.4.7",
-    "coffee-loader": "^0.7.2",
-    "coffee-script": "^1.11.1",
     "eco-loader": "^0.1.0",
     "shx": "^0.2.2",
     "ui-router-visualizer": "^3.1.1",

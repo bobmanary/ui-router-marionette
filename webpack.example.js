@@ -1,21 +1,20 @@
 var path = require("path");
 
 var config = {
-  entry: ["./example/index.coffee"],
+  entry: ["./example/index.js"],
   output: {
     path: path.resolve(__dirname, "build"),
     filename: "bundle.js"
   },
   resolve: {
-    extensions: ["", ".coffee", ".eco", ".js"]
+    extensions: ["", ".eco", ".js"]
   },
   devtool: "inline-source-map",
   module: {
     loaders: [
       {
-        test: /\.coffee$/,
-        loader: "coffee-loader",
-        exclude: /(node_modules|__tests__)/
+        test   : /.js$/,
+        loader : 'babel-loader'
       },
       {
         test: /\.eco$/,

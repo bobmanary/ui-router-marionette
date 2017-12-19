@@ -1,5 +1,3 @@
-// TODO: This file was created by bulk-decaffeinate.
-// Sanity-check the conversion and remove this comment.
 window.$ = require('jquery');
 window._ = require('underscore');
 window.Backbone = require('backbone');
