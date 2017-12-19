@@ -1,3 +1,5 @@
+// TODO: This file was created by bulk-decaffeinate.
+// Sanity-check the conversion and remove this comment.
 /*
  * decaffeinate suggestions:
  * DS102: Remove unnecessary code created because of implicit returns
@@ -7,7 +9,12 @@
  */
 let UISref, UISrefActive;
 import Mn from 'backbone.marionette';
-import { Router } from '../router';
+import Router1 from '../router';
+
+
+const {
+  Router
+} = Router1;
 
 
 // A helper behavior for linking to states with or without state parameters.

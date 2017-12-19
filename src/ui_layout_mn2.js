@@ -1,3 +1,5 @@
+// TODO: This file was created by bulk-decaffeinate.
+// Sanity-check the conversion and remove this comment.
 /*
  * decaffeinate suggestions:
  * DS102: Remove unnecessary code created because of implicit returns
@@ -6,8 +8,18 @@
  * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
  */
 let UILayoutMn2;
-import { UIViewMarionette } from './uiview';
-import { Router } from './router';
+import Uiview from './uiview';
+
+const {
+  UIViewMarionette
+} = Uiview;
+
+import Router1 from './router';
+
+const {
+  Router
+} = Router1;
+
 import Mn from 'backbone.marionette';
 // A layout view for Marionette 2.x apps.
 // When the regions are created they also get registered as UIViews.

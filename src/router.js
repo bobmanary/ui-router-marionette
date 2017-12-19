@@ -1,3 +1,5 @@
+// TODO: This file was created by bulk-decaffeinate.
+// Sanity-check the conversion and remove this comment.
 /*
  * decaffeinate suggestions:
  * DS102: Remove unnecessary code created because of implicit returns
@@ -5,9 +7,19 @@
  * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
  */
 import { UIRouter } from 'ui-router-core';
-import { mnViewsBuilder, MnViewConfig } from './state_views_builder';
+import StateViewsBuilder from './state_views_builder';
+
+const {
+  mnViewsBuilder,
+  MnViewConfig
+} = StateViewsBuilder;
+
 import { hashLocationPlugin, servicesPlugin } from 'ui-router-core/lib/vanilla';
-import { UIViewMarionette } from './uiview';
+import Uiview from './uiview';
+
+const {
+  UIViewMarionette
+} = Uiview;
 
 import getStateHookBuilder from './hook_builder';
 
