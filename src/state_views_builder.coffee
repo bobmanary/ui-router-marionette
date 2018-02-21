@@ -35,9 +35,12 @@ exports.mnViewsBuilder = (state) ->
     views[name] = config
 
     for key in keys
-      if config.hasOwnProperty(key) and not config[key]?
-        # this could probably go through ui-router's logging/tracing service
-        console.warn("ui-router state: #{state.name} - null or undefined value for '#{key}' in '#{config.$name}'")
+      if config.hasOwnProperty(key)
+        # these could probably go through ui-router's logging/tracing service
+        if not config[key]?
+          console.warn("ui-router state: #{state.name} - null or undefined value for '#{key}' in '#{config.$name}'")
+        else if typeof config[key] isnt 'function'
+          console.warn("ui-router state: #{state.name} - '#{key}' in '#{config.$name}' was not a function")
 
   return views
 

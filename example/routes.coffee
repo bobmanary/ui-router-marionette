@@ -84,3 +84,6 @@ window.App.module "Example", (Example, App, Backbone, Marionette, $, _) ->
       'clientInfo@app':
         controller: null
         view: undefined
+      'clientList@app':
+        controller: {}
+        view: 'NotAConstructor'
