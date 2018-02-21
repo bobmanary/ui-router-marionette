@@ -34,6 +34,11 @@ exports.mnViewsBuilder = (state) ->
     config.$uiViewContextAnchor = normalized.uiViewContextAnchor
     views[name] = config
 
+    for key in keys
+      if config.hasOwnProperty(key) and not config[key]?
+        # this could probably go through ui-router's logging/tracing service
+        console.warn("ui-router state: #{state.name} - null or undefined value for '#{key}' in '#{config.$name}'")
+
   return views
 
 

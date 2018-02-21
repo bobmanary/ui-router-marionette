@@ -2,7 +2,7 @@
   "author": "Bob Manary",
   "name": "ui-router-marionette",
   "description": "Front-end router for Backbone Marionette web apps using the ui-router core",
-  "version": "0.1.8-alpha",
+  "version": "0.1.9-alpha",
   "homepage": "https://github.com/bobmanary/ui-router-marionette",
   "scripts": {
     "dev": "NODE_ENV=development webpack-dev-server --host 0.0.0.0 --port 3332 --config webpack.example.js --history-api-fallback --content-base example",
@@ -15,6 +15,7 @@
   },
   "devDependencies": {
     "backbone.marionette": "^2.4.7",
+    "jquery": "^2.4.7",
     "coffee-loader": "^0.7.2",
     "coffee-script": "^1.11.1",
     "eco-loader": "^0.1.0",

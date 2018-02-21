@@ -48,6 +48,8 @@ window.App.module "Example", (Example, App, Backbone, Marionette, $, _) ->
         view: ClientContainerView
 
 
+
+
   registry.register
     name: "app.clients.client.overview",
     url: ""
@@ -64,3 +66,21 @@ window.App.module "Example", (Example, App, Backbone, Marionette, $, _) ->
     view: ClientContactView
     controller: ClientContactController
     onEnter: -> console.log 'onEnter: app.client.contact'
+
+
+  # this state should raise warnings on registration about view and controller keys that were
+  # provided but had undefined values
+  registry.register
+    name: "app.clients.client.undef"
+    url: "/undef"
+    controller: undefined
+    view: null
+
+
+  registry.register
+    name: "app.clients.client.undef2"
+    url: "/undef"
+    views:
+      'clientInfo@app':
+        controller: null
+        view: undefined
